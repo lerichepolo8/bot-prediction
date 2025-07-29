@@ -8,3 +8,11 @@ venv/
 .vscode/
 *.log
 .DS_Store
+
+.bash_history
+.cache/
+.gitconfig
+.ssh/
+.termux/
+downloads/
+storage/
