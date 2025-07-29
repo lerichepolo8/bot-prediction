@@ -382,18 +382,18 @@ app.run_polling()
 === BOUCLE DE FOND ===
 
 async def periodic_tasks(app):
-while True:
-try:
-now = datetime.utcnow().timestamp()
-if int(now) % (5 * 60) < 30:
-scrape_1xbet("POKER")
-scrape_1xbet("WHEEL")
-train_model()
-if settings.get("auto_prediction_enabled", True) and int(now) % (15 * 60) < 30:
-await send_predictions_to_all(app)
-except Exception as e:
-logging.error(f"Boucle échouée : {e}")
-await asyncio.sleep(60)
+    while True:
+        try:
+            now = datetime.utcnow().timestamp()
+            if int(now) % (5 * 60) < 30:
+                scrape_1xbet("POKER")
+                scrape_1xbet("WHEEL")
+                train_model()
+            if settings.get("auto_prediction_enabled", True) and int(now) % (15 * 60) < 30:
+                await send_predictions_to_all(app)
+        except Exception as e:
+            logging.error(f"Boucle échouée : {e}")
+        await asyncio.sleep(60)
 
-if name == "main":
-main()
+if __name__ == "__main__":
+    main()
